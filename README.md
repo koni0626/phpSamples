@@ -1,0 +1,2 @@
+# phpSamples
+PHPのサンプル集です。
