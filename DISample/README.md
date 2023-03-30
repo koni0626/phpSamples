@@ -76,46 +76,4 @@ if ($isEmailSent) {
 }
 ```
 
-上で説明した方法により、DIコンテナを使って依存関係を解決し、コードの可読性とメンテナンス性が向上します。さらに、テストのしやすさも向上させることができます。以下に、UserControllerのテストを作成する方法を説明します。
-
-まず、PHPUnitをインストールします。
-
-```
-composer require --dev phpunit/phpunit
-```
-
-次に、MailerInterfaceのモックオブジェクトを作成し、UserControllerのテストを行います。
-
-
-```
-// tests/UserControllerTest.php
-use PHPUnit\Framework\TestCase;
-
-class UserControllerTest extends TestCase {
-    public function testSendWelcomeEmail() {
-        // MailerInterfaceのモックオブジェクトを作成
-        $mailerMock = $this->createMock(MailerInterface::class);
-
-        // sendメソッドが呼び出されたときの振る舞いを定義
-        $mailerMock->expects($this->once())
-            ->method('send')
-            ->with(
-                $this->equalTo('test@example.com'),
-                $this->stringContains('Welcome'),
-                $this->stringContains('Thank you')
-            )
-            ->willReturn(true);
-
-        // UserControllerのインスタンスを作成
-        $userController = new UserController($mailerMock);
-
-        // sendWelcomeEmailメソッドをテスト
-        $isEmailSent = $userController->sendWelcomeEmail("test@example.com");
-
-        $this->assertTrue($isEmailSent);
-    }
-}
-
-```
-
-上記のコードでは、MailerInterfaceのモックオブジェクトを作成し、その振る舞いを定義しています。これにより、実際のメール送信処理を行わずに、UserControllerのsendWelcomeEmailメソッドをテストすることができます。
+上で説明した方法により、DIコンテナを使って依存関係を解決し、コードの可読性とメンテナンス性が向上します。
