@@ -119,12 +119,3 @@ class UserControllerTest extends TestCase {
 ```
 
 上記のコードでは、MailerInterfaceのモックオブジェクトを作成し、その振る舞いを定義しています。これにより、実際のメール送信処理を行わずに、UserControllerのsendWelcomeEmailメソッドをテストすることができます。
-
-最後に、テストを実行します。
-
-```
-vendor/bin/phpunit tests/UserControllerTest.php
-```
-
-このように、DIコンテナを使って依存関係を解決することで、コードのモジュール性、再利用性、テスト容易性が向上します。また、他のクラスやサービスを容易に差し替えることができるため、アプリケーションの拡張性も向上させることができます。
-
